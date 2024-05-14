@@ -2,7 +2,7 @@
 
 ## Deploy
 
-- 
+- [https://kenkenpa198.github.io/practice-device-orientation/](https://kenkenpa198.github.io/practice-device-orientation/)
 
 ## Reference
 
