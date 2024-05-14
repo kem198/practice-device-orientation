@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="../../">戻る</a>
+
+    <p>iOS 13 以上の Safari では "動作と方向" へのアクセス許可が必要です。</p>
+    <button onClick="deviceMotionRequest()">deviceMotionRequest</button>
+
+    <div style="display: flex; width: 100%">
+      <img
+        src="./images/alpha.png"
+        alt="alpha"
+        style="width: 33%; height: auto"
+      />
+      <img
+        src="./images/beta2.png"
+        alt="beta"
+        style="width: 33%; height: auto"
+      />
+      <img
+        src="./images/gamma.png"
+        alt="gamma"
+        style="width: 33%; height: auto"
+      />
+    </div>
+    <pre class="outputRotation"></pre>
+    <p>
+      引用:
+      <a
+        href="https://developer.mozilla.org/ja/docs/Web/API/Device_orientation_events/Orientation_and_motion_data_explained"
+        >方向および動きとして示されるデータ - Web API | MDN</a
+      >
+    </p>
+    <script type="text/javascript">
+      // iOS 13 でユーザーに "動作と方向" へのアクセス許可を求める関数
+      function deviceMotionRequest() {
+        // iOS Safari でのみ存在する関数のため定義されているかチェックする
+        if (DeviceMotionEvent.requestPermission) {
+          DeviceMotionEvent.requestPermission();
+        } else {
+          alert("DeviceMotionEvent.requestPermission is not found");
+        }
+      }
+
+      const outputEcf = document.querySelector(".outputEarthCoordinateFrame");
+      const outputRotation = document.querySelector(".outputRotation");
+
+      function handleOrientation(event) {
+        let alpha = event.alpha;
+        let beta = event.beta;
+        let gamma = event.gamma;
+
+        outputRotation.textContent = `alpha: ${alpha}\n`;
+        outputRotation.textContent += `beta: ${beta}\n`;
+        outputRotation.textContent += `gamma: ${gamma}\n`;
+      }
+
+      window.addEventListener("deviceorientation", handleOrientation);
+    </script>
+  </body>
+</html>
